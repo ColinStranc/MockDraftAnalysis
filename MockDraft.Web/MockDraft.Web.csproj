@@ -172,7 +172,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jscript\common.js" />
+    <Content Include="Content\jscript\HomeIndex.js" />
     <Content Include="Content\jscript\jquery-2.1.4.min.js" />
+    <Content Include="Content\jscript\resultsList.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
