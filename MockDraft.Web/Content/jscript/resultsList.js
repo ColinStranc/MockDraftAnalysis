@@ -1,7 +1,7 @@
 ﻿function PopulateResultsList(count) {
     var resultsList = $("#resultsList");
-    
-    var searchUrl = "http://localhost:61784/ProspectList/List";
+
+    var searchUrl = "/ProspectList/List";
     searchUrl += "?count=" + count;
 
     $.get(searchUrl)

@@ -24,6 +24,13 @@
                     <li>@Html.ActionLink("Full Prospect List", "ProspectList", "Home")</li>
                     <li>@Html.ActionLink("Mock Drafts", "MockDrafts", "Home")</li>
                 </ul>
+                <select id="yearDropDownList" name="yearDropDownList">
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                </select>
+                <label for="yearDropDownList">Choose Year</label>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
