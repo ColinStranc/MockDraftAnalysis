@@ -1,7 +1,31 @@
 ﻿function PopulateResultsList(count) {
     var resultsList = $("#resultsList");
-    var html = "<table class='table'><thead><tr><td class='cell headerCell'></td><td class='cell headerCell'>Name</td><td class='cell headerCell'>Team</td></tr></thead><tbody>";
+    
+    var searchUrl = "http://localhost:61784/ProspectList/List";
+    searchUrl += "?count=" + count;
 
-    html += "<tr><td class='cell'>1</td><td class='cell'>Auston Matthews</td><td class='cell'>Toronto MapleLeafs</td></tr></tbody></table>";
-    resultsList.html(html);
+    $.get(searchUrl)
+        .success(function (r) {
+            var html = WriteProspectTableHtml(r);
+            resultsList.html(html);
+        })
+        .fail(function (err) { })
+        .done(function (err) { });
 }
+
+function WriteProspectTableHtml(prospects) {
+    var tableString = "<table class='table'><thead><tr><td class='cell headerCell'></td><td class='cell headerCell'>Name</td><td class='cell headerCell'>Team</td></tr></thead><tbody>";
+    
+    $.each(prospects, function (i, prospect) {
+        var index = i + 1;
+        tableString += "<tr>" +
+            "<td class='cell'>" + index + "</td>" +
+            "<td class='cell'>" + prospect.Name + "</td>" +
+            "<td class='cell'>" + prospect.Team + "</td>" +
+            "</tr>";
+    });
+    
+    tableString += "</tbody></table>";
+
+    return tableString;
+};
