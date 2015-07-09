@@ -21,17 +21,23 @@ namespace Database
             DProspect matthews = new DProspect() 
             {
                 Name = "Auston Matthews",
-                Team = "European Europes"
+                Team = "European Europes",
+                Position = "C",
+                Handedness = "L"
             };
             DProspect chychrun = new DProspect() 
             {
                 Name = "Jakob Chychrun",
-                Team = "Sarnia Sting"
+                Team = "Sarnia Sting",
+                Position = "D",
+                Handedness = "L"
             };
             DProspect juolevi = new DProspect()
             {
                 Name = "Olli Juolevi",
-                Team = "Jokerit U20"
+                Team = "Jokerit U20",
+                Position = "D",
+                Handedness = "L"
             };
 
             allProspects.Enqueue(matthews);

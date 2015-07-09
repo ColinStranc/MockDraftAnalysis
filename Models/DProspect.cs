@@ -10,5 +10,7 @@ namespace DatabaseModels
     {
         public string Name;
         public string Team;
+        public string Position;
+        public string Handedness;
     }
 }

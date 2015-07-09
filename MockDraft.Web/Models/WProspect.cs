@@ -9,5 +9,7 @@ namespace MockDraft.Web.Models
     {
         public string Name;
         public string Team;
+        public string Position;
+        public string Handedness;
     }
 }

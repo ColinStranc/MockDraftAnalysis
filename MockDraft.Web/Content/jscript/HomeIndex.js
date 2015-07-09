@@ -1,3 +1,3 @@
 ﻿function customReady() {
-    PopulateResultsList(5);
+    PopulateResultsList(10);
 }
