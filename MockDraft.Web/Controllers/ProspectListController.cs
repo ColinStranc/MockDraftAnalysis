@@ -4,28 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MockDraft.Web.Models;
+using AutoMapper;
+using Database;
 
 namespace MockDraft.Web.Controllers
 {
     public class ProspectListController : Controller
     {
-        // GET: ProspectList
         public JsonResult List(int count)
         {
-            var prospects = new List<Prospect>();
-            Prospect brown = new Prospect()
-            {
-                Name = "Logan Brown",
-                Team = "Windsor Spitfires"
-            };
-            prospects.Add(brown);
+            IDatabaseAccessor dbAccess = new DatabaseAccessorSpoof();
+            List<DatabaseModels.DProspect> dProspects = dbAccess.GetTopProspects(count);
 
-            Prospect tkachuk = new Prospect()
+            List<WProspect> prospects = new List<WProspect>();
+
+            foreach (var dProspect in dProspects)
             {
-                Name = "Matthew Tkachuk",
-                Team = "London Knights"
-            };
-            prospects.Add(tkachuk);
+                prospects.Add(Mapper.Map<WProspect>(dProspect));
+            }
 
             return new JsonResult() { 
                 Data = prospects,
