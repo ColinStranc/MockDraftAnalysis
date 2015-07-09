@@ -3,6 +3,7 @@
 
     var searchUrl = "/ProspectList/List";
     searchUrl += "?count=" + count;
+    searchUrl += "&year=" + getCookieValue("year");
 
     $.get(searchUrl)
         .success(function (r) {

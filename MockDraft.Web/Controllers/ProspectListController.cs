@@ -11,10 +11,10 @@ namespace MockDraft.Web.Controllers
 {
     public class ProspectListController : Controller
     {
-        public JsonResult List(int count)
+        public JsonResult List(int count, int year)
         {
             IDatabaseAccessor dbAccess = new DatabaseAccessorSpoof();
-            List<DatabaseModels.DProspect> dProspects = dbAccess.GetTopProspects(count);
+            List<DatabaseModels.DProspect> dProspects = dbAccess.GetTopProspects(year, count);
 
             List<WProspect> prospects = new List<WProspect>();
 

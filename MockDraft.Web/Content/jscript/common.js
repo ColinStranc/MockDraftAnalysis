@@ -7,7 +7,7 @@ function initializeCookies() {
 }
 
 $("#yearDropDownList").on("change", function () {
-    onYearChange();
+    commonOnYearChange();
 });
 /* *************************** */
 
@@ -54,10 +54,12 @@ function getCookieValue(id) {
     return "";
 }
 
-function onYearChange() {
+function commonOnYearChange() {
     var yearMenu = $("#yearDropDownList");
 
     document.cookie = "year=" + yearMenu.val() + ";";
+
+    customOnYearChange();
 }
 
 /* *************************** */

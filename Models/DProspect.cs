@@ -12,5 +12,6 @@ namespace DatabaseModels
         public string Team;
         public string Position;
         public string Handedness;
+        public int DraftYear;
     }
 }
