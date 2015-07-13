@@ -20,6 +20,7 @@ namespace Database
 
             DProspect matthews = new DProspect() 
             {
+                Id = 1,
                 Name = "Auston Matthews",
                 Team = "European Europes",
                 Position = "C",
@@ -28,6 +29,7 @@ namespace Database
             };
             DProspect chychrun = new DProspect() 
             {
+                Id = 2,
                 Name = "Jakob Chychrun",
                 Team = "Sarnia Sting",
                 Position = "D",
@@ -36,6 +38,7 @@ namespace Database
             };
             DProspect juolevi = new DProspect()
             {
+                Id = 3,
                 Name = "Olli Juolevi",
                 Team = "Jokerit U20",
                 Position = "D",
@@ -44,6 +47,7 @@ namespace Database
             };
             DProspect connor = new DProspect()
             {
+                Id = 4,
                 Name = "Kyle Connor",
                 Team = "Youngstown Phantoms",
                 Position = "C",
@@ -52,6 +56,7 @@ namespace Database
             };
             DProspect sReinhart = new DProspect()
             {
+                Id = 5,
                 Name = "Sam Reinhart",
                 Team = "Kootenay Ice",
                 Position = "C/RW",
@@ -60,6 +65,7 @@ namespace Database
             };
             DProspect pettersson = new DProspect()
             {
+                Id = 6,
                 Name = "Elias Pettersson",
                 Team = "Timra IK",
                 Position = "C",

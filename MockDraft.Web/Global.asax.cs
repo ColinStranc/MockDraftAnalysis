@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,6 +21,16 @@ namespace MockDraft.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             AutoMapperInit();
+        }
+
+        public static string GetMockDraftConnectionString()
+        {
+            return ConfigurationManager.ConnectionStrings["MockDrafts"].ConnectionString;
+        }
+
+        public static string GetMockDraftConnectionStringName()
+        {
+            return "MockDrafts";
         }
 
         private void AutoMapperInit()
