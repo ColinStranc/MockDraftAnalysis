@@ -18,42 +18,22 @@ namespace Database
             ConnectionString = connectionString;
         }
 
+        public List<DProspect> GetTopProspects(int year)
+        {
+            return GetTopProspects(year, -1);
+        }
+
         public List<DProspect> GetTopProspects(int year, int count)
         {
-            List<DProspect> returnedProspects = new List<DProspect>();
-            Queue<DProspect> prospects = new Queue<DProspect>();
+            Queue<DProspect> prospects = DatabaseInteractions.GetProspectsByYearAsQueue(year, ConnectionString);
 
-            using (var cmd = new SqlCmdExt(ConnectionString))
+            if (year == -1)
             {
-                cmd.CreateCmd(@"
-                    SELECT
-                        *
-                    FROM
-                        Prospect
-                    WHERE
-                        DraftYear = @DraftYear
-                ");
-                cmd.SetInArg("@DraftYear", year);
-
-                cmd.ExecuteSelect();
-
-                while (cmd.Read())
-                {
-                    var dProspect = new DProspect()
-                    {
-                        Id = cmd.GetInt("Id"),
-                        Name = cmd.GetString("Name"),
-                        Team = cmd.GetString("Team"),
-                        Position = cmd.GetString("Position"),
-                        Handedness = cmd.GetString("Handedness"),
-                        DraftYear = cmd.GetInt("DraftYear")
-                    };
-                    prospects.Enqueue(dProspect);
-                }
+                return ListUtility.QueueToList<DProspect>(prospects);
             }
 
-            returnedProspects = ListUtility.GetFirstElements<DProspect>(prospects, count);
-
+            List<DProspect> returnedProspects = ListUtility.GetFirstElements<DProspect>(prospects, count);
+            
             return returnedProspects;
         }
     }

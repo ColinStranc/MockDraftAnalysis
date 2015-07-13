@@ -21,5 +21,17 @@ namespace Utility
 
             return returnedElements;
         }
+
+        public static List<T> QueueToList<T>(Queue<T> elementsAsQueue)
+        {
+            List<T> elementsAsList = new List<T>(elementsAsQueue.Count);
+
+            while (elementsAsQueue.Count > 0)
+            {
+                elementsAsList.Add(elementsAsQueue.Dequeue());
+            }
+
+            return elementsAsList;
+        }
     }
 }
