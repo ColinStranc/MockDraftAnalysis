@@ -18,16 +18,11 @@ namespace Database
             ConnectionString = connectionString;
         }
 
-        public List<DProspect> GetTopProspects(int year)
-        {
-            return GetTopProspects(year, -1);
-        }
-
         public List<DProspect> GetTopProspects(int year, int count)
         {
             Queue<DProspect> prospects = DatabaseInteractions.GetProspectsByYearAsQueue(year, ConnectionString);
 
-            if (year == -1)
+            if (count == -1)
             {
                 return ListUtility.QueueToList<DProspect>(prospects);
             }

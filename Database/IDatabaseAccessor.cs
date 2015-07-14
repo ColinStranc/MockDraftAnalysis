@@ -81,6 +81,7 @@ namespace Database
             allProspects.Enqueue(pettersson);
 
             List<DProspect> returnedProspects = new List<DProspect>();
+            if (count == -1) count = allProspects.Count;
             for (int i = 0; i < count; i++)
             {
                 if (allProspects.Count == 0) break;

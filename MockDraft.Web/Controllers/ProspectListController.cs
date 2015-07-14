@@ -6,15 +6,15 @@ using System.Web.Mvc;
 using MockDraft.Web.Models;
 using AutoMapper;
 using Database;
-//using MockDraft.Web;
 
 namespace MockDraft.Web.Controllers
 {
     public class ProspectListController : Controller
     {
-        public JsonResult List(int count, int year)
+        public JsonResult List(int year, int count)
         {
             IDatabaseAccessor dbAccess = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+
             List<DatabaseModels.DProspect> dProspects = dbAccess.GetTopProspects(year, count);
 
             List<WProspect> prospects = new List<WProspect>();

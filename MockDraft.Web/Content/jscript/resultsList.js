@@ -2,8 +2,13 @@
     var resultsList = $("#resultsList");
 
     var searchUrl = "/ProspectList/List";
-    searchUrl += "?count=" + count;
-    searchUrl += "&year=" + getCookieValue("year");
+
+    searchUrl += "?year=" + getCookieValue("year");
+    if (count) {
+        searchUrl += "&count=" + count;
+    } else {
+        searchUrl += "&count=-1";
+    }
 
     $.get(searchUrl)
         .success(function (r) {
