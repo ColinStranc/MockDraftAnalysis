@@ -1,9 +1,11 @@
-﻿function customReady() {
-    PopulateResultsList(10);
+﻿var shownProspectsCount = 10;
+
+function customReady() {
+    customOnYearChange();
 }
 
 function customOnYearChange() {
-    PopulateResultsList(10);
+    PopulateResultsList(shownProspectsCount, shownProspectsCount);
 }
 
 /* *************************** */

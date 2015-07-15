@@ -11,6 +11,11 @@ namespace MockDraft.Web.Controllers
 {
     public class ProspectListController : Controller
     {
+        public ActionResult Home()
+        {
+            return View();
+        }
+
         public JsonResult List(int year, int count)
         {
             IDatabaseAccessor dbAccess = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());

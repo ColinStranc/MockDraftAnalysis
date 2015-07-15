@@ -182,6 +182,7 @@
     <Content Include="Content\jscript\common.js" />
     <Content Include="Content\jscript\HomeIndex.js" />
     <Content Include="Content\jscript\jquery-2.1.4.min.js" />
+    <Content Include="Content\jscript\ProspectListHome.js" />
     <Content Include="Content\jscript\resultsList.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -229,10 +230,10 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ProspectList\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ProspectList\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

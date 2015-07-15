@@ -1,4 +1,6 @@
-﻿function commonReady() {
+﻿var defaultYear = "2016";
+
+function commonReady() {
     initializeCookies();
 };
 
@@ -13,9 +15,8 @@ $("#yearDropDownList").on("change", function () {
 
 function initializeYear() {
     if (!cookieIsInitialized("year")) {
-        // Not the right place to set a default year...
-        document.cookie = "year=2016;";
-        $("#yearDropDownList").val('2016');
+        document.cookie = "year=" + defaultYear + ";";
+        $("#yearDropDownList").val(defaultYear);
     }
     else {
         $("#yearDropDownList").val(getCookieValue("year"));
