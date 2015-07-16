@@ -5,7 +5,7 @@ function commonReady() {
 };
 
 function initializeCookies() {
-    initializeYear();
+    initializeYearCookie();
 }
 
 $("#yearDropDownList").on("change", function () {
@@ -13,9 +13,10 @@ $("#yearDropDownList").on("change", function () {
 });
 /* *************************** */
 
-function initializeYear() {
+function initializeYearCookie() {
     if (!cookieIsInitialized("year")) {
-        document.cookie = "year=" + defaultYear + ";";
+        setCookieValue("year", defaultYear);
+
         $("#yearDropDownList").val(defaultYear);
     }
     else {
@@ -56,12 +57,17 @@ function getCookieValue(id) {
 }
 
 function commonOnYearChange() {
-    var yearMenu = $("#yearDropDownList");
-
-    document.cookie = "year=" + yearMenu.val() + ";";
+    setCookieValue("year", $("#yearDropDownList").val());
 
     customOnYearChange();
 }
+
+function setCookieValue(name, value) {
+    //  delete any pre-existing cookie under this name
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+    document.cookie = name + "=" + value + "; path=/";
+};
 
 /* *************************** */
 /* *************************** */

@@ -12,9 +12,7 @@
             var html = WriteProspectTableHtml(r, minCountShown);
             resultsList.html(html);
             hideProspects();
-        })
-        .fail(function (err) { })
-        .done(function (err) { });
+        });
 }
 
 function WriteProspectTableHtml(prospects, minCountShown) {
@@ -49,7 +47,6 @@ function toggleAreProspectsHidden(minVisibleCount) {
         showAllProspects();
     } else {
         hideProspects(minVisibleCount);
-        
     }
 }
 

@@ -1,19 +1,12 @@
-﻿var minProspectsVisibleCount = 1;
-var prospectLoadedCount = -1;
+﻿var prospectLoadedCount = -1;
+var minProspectsVisibleCount = 1;
 
 function customReady() {
-    customOnYearChange();
+    commonOnYearChange();
 }
 
 function customOnYearChange() {
-    populateResultsListWithHiding();
-}
-
-function populateResultsListWithHiding() {
     PopulateResultsList(prospectLoadedCount, minProspectsVisibleCount);
-    //var finished = PopulateResultsList();
-
-    //toggleAreProspectsHidden(minProspectsVisibleCount);
 }
 
 $("#showMoreToggle").on("click", function() {

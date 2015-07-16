@@ -1,11 +1,12 @@
-﻿var shownProspectsCount = 10;
+﻿var prospectLoadedCount = 10;
+var minProspectsVisibleCount = prospectLoadedCount;
 
 function customReady() {
-    customOnYearChange();
+    commonOnYearChange();
 }
 
 function customOnYearChange() {
-    PopulateResultsList(shownProspectsCount, shownProspectsCount);
+    PopulateResultsList(prospectLoadedCount, minProspectsVisibleCount);
 }
 
 /* *************************** */
