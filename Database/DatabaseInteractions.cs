@@ -38,29 +38,34 @@ namespace Database
 
                 while (cmd.Read())
                 {
-                    //var league = GetLeague(cmd, ref leagues);
-                    //var team = GetTeam(cmd, ref teams, league);
+                    var dProspect = InstantiateProspect(cmd, ref teams, ref leagues);
                     
-                    var dProspect = new DProspect()
-                    {
-                        Id = cmd.GetInt("Id"),
-                        Name = cmd.GetString("Name"),
-                        Team = GetTeam(cmd.GetInt("TeamId"), ref teams, ref leagues),
-                        Height = cmd.GetInt("Height"),
-                        Weight = cmd.GetInt("Weight"),
-                        Position = GetPosition(cmd.GetInt("PositionId")),
-                        Handedness = GetHandedness(cmd.GetInt("HandednessId")),
-                        BirthDay = cmd.GetDateTime("BirthDay"),
-                        DraftYear = cmd.GetInt("DraftYear"),
-                        BirthCity = cmd.GetString("BirthCity"),
-                        BirthCountry = cmd.GetString("BirthCountry"),
-                        Notes = cmd.GetString("Notes")
-                    };
                     prospects.Enqueue(dProspect);
                 }
             }
 
             return prospects;
+        }
+
+        private DProspect InstantiateProspect(SqlCmdExt cmd, ref List<DTeam> teams, ref List<DLeague> leagues)
+        {
+            var dProspect = new DProspect()
+            {
+                Id = cmd.GetInt("Id"),
+                Name = cmd.GetString("Name"),
+                Team = GetTeam(cmd.GetInt("TeamId"), ref teams, ref leagues),
+                Height = cmd.GetInt("Height"),
+                Weight = cmd.GetInt("Weight"),
+                Position = GetPosition(cmd.GetInt("PositionId")),
+                Handedness = GetHandedness(cmd.GetInt("HandednessId")),
+                BirthDay = cmd.GetDateTime("BirthDay"),
+                DraftYear = cmd.GetInt("DraftYear"),
+                BirthCity = cmd.GetString("BirthCity"),
+                BirthCountry = cmd.GetString("BirthCountry"),
+                Notes = cmd.GetString("Notes")
+            };
+
+            return dProspect;
         }
 
         private DTeam GetTeam(int teamId, ref List<DTeam> createdTeams, ref List<DLeague> createdLeagues)
@@ -87,17 +92,23 @@ namespace Database
 
                 if (!cmd.Read()) return null;
 
-                returnTeam = new DTeam()
-                {
-                    Id = teamId,
-                    Name = cmd.GetString("Name"),
-                    League = GetLeague(cmd.GetInt("LeagueId"), ref createdLeagues)
-                };
+                returnTeam = InstantiateTeam(cmd, ref createdLeagues);
 
                 createdTeams.Add(returnTeam);
             }
 
             return returnTeam;
+        }
+
+        private DTeam InstantiateTeam(SqlCmdExt cmd, ref List<DLeague> createdLeagues)
+        {
+            var team = new DTeam()
+            {
+                Id = cmd.GetInt("Id"),
+                Name = cmd.GetString("Name"),
+                League = GetLeague(cmd.GetInt("LeagueId"), ref createdLeagues)
+            };
+            return team;
         }
 
         private DLeague GetLeague(int leagueId, ref List<DLeague> createdLeagues)
@@ -125,16 +136,22 @@ namespace Database
 
                 if (!cmd.Read()) return null;
 
-                returnLeague = new DLeague()
-                {
-                    Id = leagueId,
-                    Name = cmd.GetString("Name")
-                };
+                returnLeague = InstantiateLeague(cmd);
 
                 createdLeagues.Add(returnLeague);
             }
 
             return returnLeague;
+        }
+
+        private DLeague InstantiateLeague(SqlCmdExt cmd)
+        {
+            var league = new DLeague()
+            {
+                Id = cmd.GetInt("Id"),
+                Name = cmd.GetString("Name")
+            };
+            return league;
         }
 
         private string GetPosition(int positionId)
