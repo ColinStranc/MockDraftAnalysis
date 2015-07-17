@@ -30,7 +30,7 @@ function WriteProspectTableHtml(prospects, minCountShown) {
             "<td class='" + classNames + "'>" + index + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Position + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Name + "</td>" +
-            "<td class='" + classNames + "'>" + prospect.Height + "</td>" +
+            "<td class='" + classNames + "'>" + inchesToFeetAndInches(prospect.Height) + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Weight + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Handedness + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Team.Name + "</td>" +
@@ -74,3 +74,12 @@ function hideProspects(count) {
     toggleButton.text("Show More");
     resultsTable.addClass("elementsHidden");
 }
+
+// I'm able to reference other js files before... why not this time?
+function inchesToFeetAndInches(inches) {
+    var feet = Math.floor(inches / 12);
+    inches = inches % 12;
+
+    var feetAndInches = "" + feet + "' " + inches + '"';
+    return feetAndInches;
+};

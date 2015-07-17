@@ -1,5 +1,5 @@
 ﻿var prospectLoadedCount = -1;
-var minProspectsVisibleCount = 1;
+var minProspectsVisibleCount = 30;
 
 function customReady() {
     commonOnYearChange();

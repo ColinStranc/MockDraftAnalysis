@@ -70,6 +70,15 @@ function setCookieValue(name, value) {
 };
 
 /* *************************** */
+
+function inchesToFeetAndInches(inches) {
+    var feet = Math.floor(inches / 12);
+    inches = inches % 12;
+
+    var feetAndInches = "" + feet + "' " + inches + '"';
+    return feetAndInches;
+};
+
 /* *************************** */
 /* *************************** */
 /* *************************** */
