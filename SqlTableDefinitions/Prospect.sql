@@ -1,12 +1,18 @@
 CREATE TABLE Prospect
 (
-Id int IDENTITY(1, 1) PRIMARY KEY,
-Name varchar(255) NOT NULL,
-Team varchar(255),
-Position varchar(10) NOT NULL,
-Handedness varchar(1) NOT NULL,
-DraftYear int NOT NULL
+	Id INT IDENTITY(1, 1) PRIMARY KEY,
+	Name VARCHAR(255) NOT NULL,
+	TeamId INT FOREIGN KEY REFERENCES Team (Id) NOT NULL,
+	Height INT NOT NULL,
+	Weight INT NOT NULL,
+	PositionId INT FOREIGN KEY REFERENCES Position (Id) NOT NULL,
+	HandednessId INT FOREIGN KEY REFERENCES Handedness (Id) NOT NULL,
+	BirthDay DATE NOT NULL,
+	DraftYear INT NOT NULL,
+	BirthCity VARCHAR(255),
+	BirthCountry VARCHAR(255),
+	Notes VARCHAR (2047)
 );
 
-CREATE UNIQUE INDEX Prospect_Name
-ON Prospect (Name);
+CREATE UNIQUE INDEX Prospect_Name_BirthDay
+ON Prospect (Name, BirthDay);

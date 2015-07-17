@@ -1,0 +1,21 @@
+CREATE TABLE League
+(
+	Id INT IDENTITY(1, 1) PRIMARY KEY,
+	Name VARCHAR(255) NOT NULL
+);
+
+CREATE UNIQUE INDEX League_Name
+ON League (Name);
+
+
+INSERT INTO League (Name)
+VALUES ('OHL');
+
+INSERT INTO League (Name)
+VALUES ('WHL');
+
+INSERT INTO League (Name)
+VALUES ('QMJHL');
+
+INSERT INTO League (Name)
+VALUES ('SHL');

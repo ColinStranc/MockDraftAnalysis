@@ -1,0 +1,9 @@
+CREATE TABLE Draft
+(
+	Id INT IDENTITY(1, 1) PRIMARY KEY,
+	Author VARCHAR(255),
+	SubmissionDate DATE NOT NULL,
+	DraftYear INT NOT NULL,
+	DraftLength INT,
+	DraftTypeId INT FOREIGN KEY REFERENCES DraftType (Id)
+);

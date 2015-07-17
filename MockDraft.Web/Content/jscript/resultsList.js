@@ -16,7 +16,7 @@
 }
 
 function WriteProspectTableHtml(prospects, minCountShown) {
-    var tableString = "<table class='table'><thead><tr><td class='cell headerCell'></td><td class='cell headerCell'>Pos</td><td class='cell headerCell'>Name</td><td class='cell headerCell'>Hand</td><td class='cell headerCell'>Team</td></tr></thead><tbody>";
+    var tableString = "<table class='table'><thead><tr><td class='cell headerCell'></td><td class='cell headerCell'>Pos</td><td class='cell headerCell'>Name</td><td class='cell headerCell'>Height</td><td class='cell headerCell'>Weight</td><td class='cell headerCell'>Hand</td><td class='cell headerCell'>Team</td><td class='cell headerCell'>League</td></tr></thead><tbody>";
     
     $.each(prospects, function (i, prospect) {
         var index = i + 1;
@@ -30,8 +30,11 @@ function WriteProspectTableHtml(prospects, minCountShown) {
             "<td class='" + classNames + "'>" + index + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Position + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Name + "</td>" +
+            "<td class='" + classNames + "'>" + prospect.Height + "</td>" +
+            "<td class='" + classNames + "'>" + prospect.Weight + "</td>" +
             "<td class='" + classNames + "'>" + prospect.Handedness + "</td>" +
-            "<td class='" + classNames + "'>" + prospect.Team + "</td>" +
+            "<td class='" + classNames + "'>" + prospect.Team.Name + "</td>" +
+            "<td class='" + classNames + "'>" + prospect.Team.League.Name + "</td>" +
             "</tr>";
     });
     

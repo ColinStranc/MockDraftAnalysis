@@ -172,7 +172,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\WLeague.cs" />
     <Compile Include="Models\WProspect.cs" />
+    <Compile Include="Models\WTeam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

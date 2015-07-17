@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DatabaseModels
 {
-    public class DTeam
+    public class DLeague
     {
         public int Id;
         public string Name;
-        public DLeague League;
     }
 }

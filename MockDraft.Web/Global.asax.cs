@@ -35,8 +35,12 @@ namespace MockDraft.Web
 
         private void AutoMapperInit()
         {
-            // D(atabase)Prospect too W(eb)Prospect
-            Mapper.CreateMap<DatabaseModels.DProspect, MockDraft.Web.Models.WProspect>();   
+            // D(atabase) too W(eb)
+            Mapper.CreateMap<DatabaseModels.DLeague, MockDraft.Web.Models.WLeague>();
+            Mapper.CreateMap<DatabaseModels.DTeam, MockDraft.Web.Models.WTeam>();
+            Mapper.CreateMap<DatabaseModels.DProspect, MockDraft.Web.Models.WProspect>();
+            
+            
         }
     }
 }

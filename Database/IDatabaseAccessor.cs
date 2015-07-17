@@ -17,7 +17,7 @@ namespace Database
         public List<DProspect> GetTopProspects(int year, int count)
         {
             Queue<DProspect> allProspects = new Queue<DProspect>();
-
+            /*
             DProspect matthews = new DProspect() 
             {
                 Id = 1,
@@ -79,7 +79,7 @@ namespace Database
             allProspects.Enqueue(connor);
             allProspects.Enqueue(sReinhart);
             allProspects.Enqueue(pettersson);
-
+            */
             List<DProspect> returnedProspects = new List<DProspect>();
             if (count == -1) count = allProspects.Count;
             for (int i = 0; i < count; i++)

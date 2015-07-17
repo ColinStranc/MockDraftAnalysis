@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DLeague.cs" />
     <Compile Include="DProspect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTeam.cs" />

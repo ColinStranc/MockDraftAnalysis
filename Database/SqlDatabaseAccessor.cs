@@ -20,7 +20,8 @@ namespace Database
 
         public List<DProspect> GetTopProspects(int year, int count)
         {
-            Queue<DProspect> prospects = DatabaseInteractions.GetProspectsByYearAsQueue(year, ConnectionString);
+            DatabaseInteractions dbInteractor = new DatabaseInteractions(ConnectionString);
+            Queue<DProspect> prospects = dbInteractor.GetProspectsByYearAsQueue(year);
 
             if (count == -1)
             {
