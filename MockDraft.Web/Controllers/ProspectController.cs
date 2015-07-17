@@ -9,9 +9,9 @@ using Database;
 
 namespace MockDraft.Web.Controllers
 {
-    public class ProspectListController : Controller
+    public class ProspectController : Controller
     {
-        public ActionResult Home()
+        public ActionResult ListHome()
         {
             return View();
         }

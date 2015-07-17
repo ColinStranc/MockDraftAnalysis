@@ -1,7 +1,7 @@
 ﻿function PopulateResultsList(countLoaded, minCountShown) {
     var resultsList = $("#resultsList");
 
-    var searchUrl = "/ProspectList/List";
+    var searchUrl = "/Prospect/List";
 
     searchUrl += "?year=" + getCookieValue("year");
     searchUrl += "&count=" + countLoaded;
