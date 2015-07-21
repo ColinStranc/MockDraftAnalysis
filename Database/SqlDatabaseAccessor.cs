@@ -38,5 +38,15 @@ namespace Database
             var dbInteractor = new DatabaseInteractions(ConnectionString);
             dbInteractor.AddLeague(league);
         }
+
+        public bool LeagueNameExists(string name)
+        {
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            var existingLeague = dbInteractor.GetLeague(name);
+
+            if (existingLeague == null) return false;
+
+            return true;
+        }
     }
 }

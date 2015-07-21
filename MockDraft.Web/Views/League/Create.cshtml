@@ -11,6 +11,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        <p>@ViewBag.NameErrorMessage</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

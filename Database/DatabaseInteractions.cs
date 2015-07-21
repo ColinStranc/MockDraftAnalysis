@@ -61,6 +61,28 @@ namespace Database
             }
         }
 
+        public DLeague GetLeague(string leagueName)
+        {
+            using (var cmd = new SqlCmdExt(_connectionString))
+            {
+                cmd.CreateCmd(@"
+                    SELECT
+                        *
+                    FROM
+                        League
+                    WHERE
+                        Name = @Name
+                ");
+                cmd.SetInArg("@Name", leagueName);
+
+                cmd.ExecuteSelect();
+
+                if (!cmd.Read()) return null;
+
+                return InstantiateLeague(cmd);
+            }
+        }
+
         private DProspect InstantiateProspect(SqlCmdExt cmd, ref List<DTeam> teams, ref List<DLeague> leagues)
         {
             var dProspect = new DProspect()

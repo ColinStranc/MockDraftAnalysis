@@ -11,10 +11,16 @@ namespace Database
     {
         void AddLeague(DLeague league);
         List<DProspect> GetTopProspects(int year, int count);
+        bool LeagueNameExists(string name);
     }
 
     public class DatabaseAccessorSpoof : IDatabaseAccessor
     {
+        public bool LeagueNameExists(string name)
+        {
+            return false;
+        }
+
         public void AddLeague(DLeague league) { }
         public List<DProspect> GetTopProspects(int year, int count)
         {

@@ -12,7 +12,6 @@ namespace MockDraft.Web.Controllers
 {
     public class LeagueController : Controller
     {
-        // GET: League
         [HttpGet]
         public ActionResult Create()
         {
@@ -23,9 +22,16 @@ namespace MockDraft.Web.Controllers
         [HttpPost]
         public ActionResult Create(WLeague league)
         {
+            IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+
             if (ModelState.IsValid)
             {
-                IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+                if (db.LeagueNameExists(league.Name))
+                {
+                    ViewBag.NameErrorMessage = "League " + league.Name + " already exists.";
+                    return View(league);
+                }
+                ViewBag.NameErrorMessage = "";
 
                 db.AddLeague(Mapper.Map<DLeague>(league));
             }
