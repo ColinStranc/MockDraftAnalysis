@@ -39,8 +39,11 @@ namespace MockDraft.Web
             Mapper.CreateMap<DatabaseModels.DLeague, MockDraft.Web.Models.WLeague>();
             Mapper.CreateMap<DatabaseModels.DTeam, MockDraft.Web.Models.WTeam>();
             Mapper.CreateMap<DatabaseModels.DProspect, MockDraft.Web.Models.WProspect>();
-            
-            
+
+            // W(eb) too D(atabase)
+            Mapper.CreateMap<MockDraft.Web.Models.WLeague, DatabaseModels.DLeague>();
+            Mapper.CreateMap<MockDraft.Web.Models.WTeam, DatabaseModels.DTeam>();
+            Mapper.CreateMap<MockDraft.Web.Models.WProspect, DatabaseModels.DProspect>();
         }
     }
 }

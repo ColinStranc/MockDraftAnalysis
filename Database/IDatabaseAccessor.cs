@@ -9,11 +9,13 @@ namespace Database
 {
     public interface IDatabaseAccessor
     {
+        void AddLeague(DLeague league);
         List<DProspect> GetTopProspects(int year, int count);
     }
 
     public class DatabaseAccessorSpoof : IDatabaseAccessor
     {
+        public void AddLeague(DLeague league) { }
         public List<DProspect> GetTopProspects(int year, int count)
         {
             Queue<DProspect> allProspects = new Queue<DProspect>();

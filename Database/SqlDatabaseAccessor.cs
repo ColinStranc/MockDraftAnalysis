@@ -32,5 +32,11 @@ namespace Database
             
             return returnedProspects;
         }
+
+        public void AddLeague(DLeague league)
+        {
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            dbInteractor.AddLeague(league);
+        }
     }
 }

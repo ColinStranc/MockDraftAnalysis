@@ -47,6 +47,20 @@ namespace Database
             return prospects;
         }
 
+        public void AddLeague(DLeague league)
+        {
+            using (var cmd = new SqlCmdExt(_connectionString))
+            {
+                cmd.CreateCmd(@"
+                    INSERT INTO League (Name)
+                    VALUES (@Name)
+                ");
+                cmd.SetInArg("@Name", league.Name);
+
+                cmd.ExecuteInsertUpdateDelete();
+            }
+        }
+
         private DProspect InstantiateProspect(SqlCmdExt cmd, ref List<DTeam> teams, ref List<DLeague> leagues)
         {
             var dProspect = new DProspect()

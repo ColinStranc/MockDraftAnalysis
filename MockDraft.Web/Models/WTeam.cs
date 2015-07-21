@@ -7,8 +7,8 @@ namespace MockDraft.Web.Models
 {
     public class WTeam
     {
-        public int Id;
-        public string Name;
-        public WLeague League;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public WLeague League { get; set; }
     }
 }
