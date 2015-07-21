@@ -61,6 +61,21 @@ namespace Database
             }
         }
 
+        public void AddTeam(DTeam team)
+        {
+            using (var cmd = new SqlCmdExt(_connectionString))
+            {
+                cmd.CreateCmd(@"
+                    INSERT INTO Team (Name, LeagueId)
+                    VALUES (@Name, @LeagueId)
+                ");
+                cmd.SetInArg("@Name", team.Name);
+                cmd.SetInArg("@LeagueId", team.League.Id);
+
+                cmd.ExecuteInsertUpdateDelete();
+            }
+        }
+
         public DLeague GetLeague(string leagueName)
         {
             using (var cmd = new SqlCmdExt(_connectionString))
@@ -81,6 +96,54 @@ namespace Database
 
                 return InstantiateLeague(cmd);
             }
+        }
+
+        public DTeam GetTeam(string teamName, int leagueId)
+        {
+            using (var cmd = new SqlCmdExt(_connectionString))
+            {
+                cmd.CreateCmd(@"
+                    SELECT
+                        *
+                    FROM
+                        Team
+                    WHERE
+                        Name = @Name AND
+                        LeagueId = @LeagueId
+                ");
+                cmd.SetInArg("@Name", teamName);
+                cmd.SetInArg("@LeagueId", leagueId);
+
+                cmd.ExecuteSelect();
+
+                if (!cmd.Read()) return null;
+
+                return InstantiateTeam(cmd);
+            }
+        }
+
+        public List<DLeague> GetAllLeagues()
+        {
+            var leagues = new List<DLeague>();
+
+            using (var cmd = new SqlCmdExt(_connectionString))
+            {
+                cmd.CreateCmd(@"
+                    SELECT
+                        *
+                    FROM
+                        League
+                ");
+
+                cmd.ExecuteSelect();
+
+                while (cmd.Read())
+                {
+                    leagues.Add(InstantiateLeague(cmd));
+                }
+            }
+
+            return leagues;
         }
 
         private DProspect InstantiateProspect(SqlCmdExt cmd, ref List<DTeam> teams, ref List<DLeague> leagues)
@@ -147,6 +210,40 @@ namespace Database
             return team;
         }
 
+        private DTeam InstantiateTeam(SqlCmdExt cmd)
+        {
+            var team = new DTeam()
+            {
+                Id = cmd.GetInt("Id"),
+                Name = cmd.GetString("Name"),
+                League = GetLeague(cmd.GetInt("LeagueId"))
+            };
+
+            return team;
+        }
+
+        private DLeague GetLeague(int leagueId)
+        {
+            using (var cmd = new SqlCmdExt(_connectionString))
+            {
+                cmd.CreateCmd(@"
+                    SELECT
+                        *
+                    FROM
+                        League
+                    WHERE
+                        Id = @Id
+                ");
+                cmd.SetInArg("@Id", leagueId);
+
+                cmd.ExecuteSelect();
+
+                if (!cmd.Read()) return null;
+
+                return InstantiateLeague(cmd);
+            }
+        }
+
         private DLeague GetLeague(int leagueId, ref List<DLeague> createdLeagues)
         {
             foreach (var league in createdLeagues)
@@ -154,6 +251,8 @@ namespace Database
                 if (league.Id == leagueId) return league;
             }
 
+            return GetLeague(leagueId);
+            /*
             DLeague returnLeague;
 
             using (var cmd = new SqlCmdExt(_connectionString))
@@ -178,6 +277,7 @@ namespace Database
             }
 
             return returnLeague;
+            */
         }
 
         private DLeague InstantiateLeague(SqlCmdExt cmd)

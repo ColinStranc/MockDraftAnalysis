@@ -22,6 +22,7 @@ namespace MockDraft.Web.Controllers
         [HttpPost]
         public ActionResult Create(WLeague league)
         {
+            var dLeague = Mapper.Map<DLeague>(league);
             IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
 
             if (ModelState.IsValid)
@@ -33,7 +34,7 @@ namespace MockDraft.Web.Controllers
                 }
                 ViewBag.NameErrorMessage = "";
 
-                db.AddLeague(Mapper.Map<DLeague>(league));
+                db.AddLeague(dLeague);
             }
 
             return View();

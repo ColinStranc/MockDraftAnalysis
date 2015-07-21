@@ -39,6 +39,12 @@ namespace Database
             dbInteractor.AddLeague(league);
         }
 
+        public void AddTeam(DTeam team)
+        {
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            dbInteractor.AddTeam(team);
+        }
+
         public bool LeagueNameExists(string name)
         {
             var dbInteractor = new DatabaseInteractions(ConnectionString);
@@ -47,6 +53,23 @@ namespace Database
             if (existingLeague == null) return false;
 
             return true;
+        }
+
+        public bool TeamExists(DTeam team)
+        {
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            var existingTeam = dbInteractor.GetTeam(team.Name, team.League.Id);
+
+            if (existingTeam == null) return false;
+
+            return true;
+        }
+
+        public List<DLeague> GetAllLeagues()
+        {
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            var leagues = dbInteractor.GetAllLeagues();
+            return leagues;
         }
     }
 }

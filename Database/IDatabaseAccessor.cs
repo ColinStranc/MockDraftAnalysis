@@ -10,17 +10,30 @@ namespace Database
     public interface IDatabaseAccessor
     {
         void AddLeague(DLeague league);
+        void AddTeam(DTeam team);
         List<DProspect> GetTopProspects(int year, int count);
         bool LeagueNameExists(string name);
+        bool TeamExists(DTeam team);
+        List<DLeague> GetAllLeagues();
     }
 
     public class DatabaseAccessorSpoof : IDatabaseAccessor
     {
-        public bool LeagueNameExists(string name)
+        public List<DLeague> GetAllLeagues()
+        {
+            return null;
+        }
+
+        public bool TeamExists(DTeam team)
         {
             return false;
         }
 
+        public bool LeagueNameExists(string name)
+        {
+            return false;
+        }
+        public void AddTeam(DTeam team) { }
         public void AddLeague(DLeague league) { }
         public List<DProspect> GetTopProspects(int year, int count)
         {
