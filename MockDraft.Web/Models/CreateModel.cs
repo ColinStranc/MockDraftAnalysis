@@ -5,10 +5,25 @@ using System.Web;
 
 namespace MockDraft.Web.Models
 {
-    public class CreateModel
+    public abstract class CreateModel
     {
-        public string FeedbackMessage { get { return _feedbackMessage; } }
+        public abstract string ModelType { get; }
+        public abstract string ModelName { get; }
+        
+        public string SuccessMessage 
+        { 
+            get 
+            { 
+                return ModelType + " " + ModelName + " successfully created."; 
+            } 
+        }
 
-        private string _feedbackMessage = "";
+        public string AlreadyExistedErrorMessage
+        {
+            get
+            {
+                return ModelType + " " + ModelName + " already exists.";
+            }
+        }
     }
 }

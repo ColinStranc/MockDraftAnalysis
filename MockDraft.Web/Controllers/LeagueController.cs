@@ -15,13 +15,15 @@ namespace MockDraft.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var league = new WLeague();
+            var league = new CreateLeagueModel();
             return View(league);
         }
 
         [HttpPost]
-        public ActionResult Create(WLeague league)
+        public ActionResult Create(CreateLeagueModel createLeagueModel)
         {
+            var league = createLeagueModel.LeagueModel;
+
             var dLeague = Mapper.Map<DLeague>(league);
             IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
 
@@ -29,13 +31,12 @@ namespace MockDraft.Web.Controllers
             {
                 if (db.LeagueNameExists(league.Name))
                 {
-                    ViewBag.Feedback = "League " + league.Name + " already exists.";
-                    return View(league);
+                    ViewBag.Feedback = createLeagueModel.AlreadyExistedErrorMessage;
+                    return View(createLeagueModel);
                 }
-                ViewBag.Feedback = "";
 
                 db.AddLeague(dLeague);
-                ViewBag.Feedback = "" + league.Name + " successfully created.";
+                ViewBag.Feedback = createLeagueModel.SuccessMessage;
             }
 
             return View();

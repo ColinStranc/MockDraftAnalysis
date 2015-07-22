@@ -31,13 +31,12 @@ namespace MockDraft.Web.Controllers
             {
                 if (db.TeamExists(dTeam))
                 {
-                    ViewBag.Feedback = "Team " + teamModel.Name + " already exists.";
+                    ViewBag.Feedback = createTeamModel.AlreadyExistedErrorMessage;
                     return View(teamModel);
                 }
-                ViewBag.Feedback = "";
 
                 db.AddTeam(dTeam);
-                ViewBag.Feedback = "Team " + teamModel.Name + " successfully created.";
+                ViewBag.Feedback = createTeamModel.SuccessMessage;
             }
 
             var newTeamModel = new CreateTeamModel();

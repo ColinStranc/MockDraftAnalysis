@@ -16,6 +16,9 @@ namespace MockDraft.Web.Models
         public WTeam TeamModel { get; set; }
         public int LeagueId { get; set; }
 
+        public override string ModelType { get { return "Team"; } }
+        public override string ModelName { get { return TeamModel.Name; } }
+
         public CreateTeamModel()
         {
             TeamModel = new WTeam();
