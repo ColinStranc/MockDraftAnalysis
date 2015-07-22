@@ -7,16 +7,19 @@ using System.Web;
 
 namespace MockDraft.Web.Models
 {
-    public class CreateTeamModel : WTeam
+    public class CreateTeamModel : CreateModel
     {
         private IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
 
         public List<WLeague> PossibleLeagues;
 
+        public WTeam TeamModel { get; set; }
         public int LeagueId { get; set; }
 
         public CreateTeamModel()
         {
+            TeamModel = new WTeam();
+
             var dLeagues = db.GetAllLeagues();
             PossibleLeagues = new List<WLeague>();
             foreach (var dLeague in dLeagues)

@@ -20,10 +20,11 @@ namespace MockDraft.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CreateTeamModel teamModel)
+        public ActionResult Create(CreateTeamModel createTeamModel)
         {
-            teamModel.League = GetLeagueWithId(teamModel.LeagueId, teamModel.PossibleLeagues);
-            var dTeam = Mapper.Map<DTeam>((WTeam)teamModel);
+            var teamModel = createTeamModel.TeamModel;
+            teamModel.League = GetLeagueWithId(createTeamModel.LeagueId, createTeamModel.PossibleLeagues);
+            var dTeam = Mapper.Map<DTeam>(teamModel);
             IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
 
             if (ModelState.IsValid)
