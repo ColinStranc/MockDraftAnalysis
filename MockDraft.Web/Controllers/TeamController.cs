@@ -15,12 +15,12 @@ namespace MockDraft.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var teamModel = new TeamWithPossibleLeagues();
+            var teamModel = new CreateTeamModel();
             return View(teamModel);
         }
 
         [HttpPost]
-        public ActionResult Create(TeamWithPossibleLeagues teamModel)
+        public ActionResult Create(CreateTeamModel teamModel)
         {
             teamModel.League = GetLeagueWithId(teamModel.LeagueId, teamModel.PossibleLeagues);
             var dTeam = Mapper.Map<DTeam>((WTeam)teamModel);
@@ -36,10 +36,10 @@ namespace MockDraft.Web.Controllers
                 ViewBag.Feedback = "";
 
                 db.AddTeam(dTeam);
+                ViewBag.Feedback = "Team " + teamModel.Name + " successfully created.";
             }
 
-            ViewBag.Feedback = "Team " + teamModel.Name + " successfully created.";
-            var newTeamModel = new TeamWithPossibleLeagues();
+            var newTeamModel = new CreateTeamModel();
             return View(newTeamModel);
         }
 

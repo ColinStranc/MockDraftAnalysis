@@ -26,11 +26,11 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.LeagueId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-8">
+            <div class="col-md-3">
                 @Html.DropDownListFor(model => model.LeagueId, new SelectList(Model.PossibleLeagues, "Id", "Name"))
                 @Html.ValidationMessageFor(model => model.LeagueId, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-2">
+            <div class="col-md-7">
                 @Html.ActionLink("Create New League", "Create", "League")
             </div>
         </div>

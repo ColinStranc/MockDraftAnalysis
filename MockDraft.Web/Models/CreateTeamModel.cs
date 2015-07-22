@@ -7,7 +7,7 @@ using System.Web;
 
 namespace MockDraft.Web.Models
 {
-    public class TeamWithPossibleLeagues : WTeam
+    public class CreateTeamModel : WTeam
     {
         private IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
 
@@ -15,9 +15,8 @@ namespace MockDraft.Web.Models
 
         public int LeagueId { get; set; }
 
-        public TeamWithPossibleLeagues()
+        public CreateTeamModel()
         {
-
             var dLeagues = db.GetAllLeagues();
             PossibleLeagues = new List<WLeague>();
             foreach (var dLeague in dLeagues)
@@ -25,7 +24,6 @@ namespace MockDraft.Web.Models
                 var wLeague = Mapper.Map<WLeague>(dLeague);
                 PossibleLeagues.Add(wLeague);
             }
-
         }
     }
 }

@@ -174,7 +174,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\TeamWithPossibleLeagues.cs" />
+    <Compile Include="Models\CreateTeamModel.cs" />
     <Compile Include="Models\WLeague.cs" />
     <Compile Include="Models\WProspect.cs" />
     <Compile Include="Models\WTeam.cs" />

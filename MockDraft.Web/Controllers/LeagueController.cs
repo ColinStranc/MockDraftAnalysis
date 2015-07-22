@@ -29,12 +29,13 @@ namespace MockDraft.Web.Controllers
             {
                 if (db.LeagueNameExists(league.Name))
                 {
-                    ViewBag.NameErrorMessage = "League " + league.Name + " already exists.";
+                    ViewBag.Feedback = "League " + league.Name + " already exists.";
                     return View(league);
                 }
-                ViewBag.NameErrorMessage = "";
+                ViewBag.Feedback = "";
 
                 db.AddLeague(dLeague);
+                ViewBag.Feedback = "" + league.Name + " successfully created.";
             }
 
             return View();
