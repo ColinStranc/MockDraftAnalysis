@@ -191,6 +191,7 @@
     <Content Include="Content\jscript\jquery-2.1.4.min.js" />
     <Content Include="Content\jscript\ProspectListHome.js" />
     <Content Include="Content\jscript\resultsList.js" />
+    <Content Include="Content\jscript\TeamCreate.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

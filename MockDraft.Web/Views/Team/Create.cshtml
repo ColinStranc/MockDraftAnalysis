@@ -31,7 +31,7 @@
                 @Html.ValidationMessageFor(model => model.LeagueId, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-7">
-                @Html.ActionLink("Create New League", "Create", "League")
+                @Html.ActionLink("Create New League", "Create", "League", new {}, new { @id = "createLeagueLink" })
             </div>
         </div>
 
@@ -46,3 +46,14 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script src="~/Content/jscript/jquery-2.1.4.min.js"></script>
+<script src="~/Content/jscript/common.js"></script>
+<script src="~/Content/jscript/TeamCreate.js"></script>
+
+<script>
+    $(document).ready( function() {
+        commonReady();
+        customReady();
+    });
+</script>

@@ -62,11 +62,16 @@ function commonOnYearChange() {
     customOnYearChange();
 }
 
-function setCookieValue(name, value) {
+function setCookieValue(name, value, path) {
     //  delete any pre-existing cookie under this name
     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
-    document.cookie = name + "=" + value + "; path=/";
+    var cookieString = name + "=" + value + "; path=/";
+    if (path) {
+        cookieString += path;
+    }
+
+    document.cookie = cookieString;
 };
 
 /* *************************** */
