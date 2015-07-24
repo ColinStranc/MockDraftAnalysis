@@ -32,7 +32,7 @@ namespace MockDraft.Web.Controllers
                 if (db.TeamExists(dTeam))
                 {
                     ViewBag.Feedback = createTeamModel.AlreadyExistedErrorMessage;
-                    return View(teamModel);
+                    return View(createTeamModel);
                 }
 
                 db.AddTeam(dTeam);

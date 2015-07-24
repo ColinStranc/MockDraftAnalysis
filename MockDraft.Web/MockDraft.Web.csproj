@@ -175,6 +175,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CreateLeagueModel.cs" />
     <Compile Include="Models\CreateModel.cs" />
+    <Compile Include="Models\CreateProspectModel.cs" />
     <Compile Include="Models\CreateTeamModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\WLeague.cs" />
@@ -241,6 +242,7 @@
     <Content Include="Views\Prospect\ListHome.cshtml" />
     <Content Include="Views\League\Create.cshtml" />
     <Content Include="Views\Team\Create.cshtml" />
+    <Content Include="Views\Prospect\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

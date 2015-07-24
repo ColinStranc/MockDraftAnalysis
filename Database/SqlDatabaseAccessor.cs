@@ -45,6 +45,16 @@ namespace Database
             dbInteractor.AddTeam(team);
         }
 
+        public void AddProspect(DProspect prospect)
+        {
+            if (prospect.DraftYear == 0)
+            {
+                prospect.DraftYear = Utility.Conversions.GetDraftYearFromBirthYear(prospect.BirthDay);
+            }
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            dbInteractor.AddProspect(prospect);
+        }
+
         public bool LeagueNameExists(string name)
         {
             var dbInteractor = new DatabaseInteractions(ConnectionString);
@@ -65,11 +75,28 @@ namespace Database
             return true;
         }
 
+        public bool ProspectExists(DProspect prospect)
+        {
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            var existingProspect = dbInteractor.GetProspect(prospect.Name, prospect.Position, prospect.Team.Id);
+
+            if (existingProspect == null) return false;
+
+            return true;
+        }
+
         public List<DLeague> GetAllLeagues()
         {
             var dbInteractor = new DatabaseInteractions(ConnectionString);
             var leagues = dbInteractor.GetAllLeagues();
             return leagues;
+        }
+
+        public List<DTeam> GetAllTeams()
+        {
+            var dbInteractor = new DatabaseInteractions(ConnectionString);
+            var teams = dbInteractor.GetAllTeams();
+            return teams;
         }
     }
 }

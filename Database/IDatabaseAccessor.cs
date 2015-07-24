@@ -11,10 +11,13 @@ namespace Database
     {
         void AddLeague(DLeague league);
         void AddTeam(DTeam team);
+        void AddProspect(DProspect prospect);
         List<DProspect> GetTopProspects(int year, int count);
         bool LeagueNameExists(string name);
         bool TeamExists(DTeam team);
+        bool ProspectExists(DProspect prospect);
         List<DLeague> GetAllLeagues();
+        List<DTeam> GetAllTeams();
     }
 
     public class DatabaseAccessorSpoof : IDatabaseAccessor
@@ -22,6 +25,16 @@ namespace Database
         public List<DLeague> GetAllLeagues()
         {
             return null;
+        }
+
+        public List<DTeam> GetAllTeams()
+        {
+            return null;
+        }
+
+        public bool ProspectExists(DProspect prospect)
+        {
+            return false;
         }
 
         public bool TeamExists(DTeam team)
@@ -35,6 +48,7 @@ namespace Database
         }
         public void AddTeam(DTeam team) { }
         public void AddLeague(DLeague league) { }
+        public void AddProspect(DProspect prospect) { }
         public List<DProspect> GetTopProspects(int year, int count)
         {
             Queue<DProspect> allProspects = new Queue<DProspect>();

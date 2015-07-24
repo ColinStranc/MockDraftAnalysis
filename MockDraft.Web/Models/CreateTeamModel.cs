@@ -9,7 +9,7 @@ namespace MockDraft.Web.Models
 {
     public class CreateTeamModel : CreateModel
     {
-        private IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+        //private IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
 
         public List<WLeague> PossibleLeagues;
 
