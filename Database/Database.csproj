@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseCache.cs" />
     <Compile Include="DatabaseInteractions.cs" />
     <Compile Include="IDatabaseAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,11 +10,49 @@ namespace Database
     public class DatabaseInteractions
     {
         private readonly string _connectionString;
+        private static Dictionary<string, DatabaseCache> _caches = new Dictionary<string, DatabaseCache>();
+        private DatabaseCache _cache;
 
         public DatabaseInteractions(string connectionString) 
         {
             _connectionString = connectionString;
+            
+            if (!_caches.ContainsKey(connectionString))
+            {
+                _caches.Add(connectionString, new DatabaseCache(connectionString));
+            }
+            _cache = _caches[_connectionString];
         }
+
+        /* *******************************************************
+         * 
+         */
+
+        public int GetHandednessId(string hand)
+        {
+            return _cache.GetHandednessId(hand);
+        }
+
+        public string GetHandedness(int id)
+        {
+            return _cache.GetHandedness(id);
+        }
+
+        public int GetPositionId(string position)
+        {
+            return _cache.GetPositionId(position);
+        }
+
+        public string GetPosition(int id)
+        {
+            return _cache.GetPosition(id);
+        }
+
+        /* *******************************************************
+         * 
+         */
+
+
 
         public Queue<DProspect> GetProspectsByYearAsQueue(int year)
         {
@@ -405,91 +443,7 @@ namespace Database
             };
             return league;
         }
-
-        private string GetPosition(int positionId)
-        {
-            using (var cmd = new SqlCmdExt(_connectionString))
-            {
-                cmd.CreateCmd(@"
-                    SELECT
-                        Position
-                    FROM
-                        Position
-                    WHERE
-                        Id = @Id
-                    ");
-                cmd.SetInArg("@Id", positionId);
-
-                cmd.ExecuteSelect();
-                if (!cmd.Read()) return null;
-
-                return cmd.GetString("Position");
-            }
-        }
-
-        private int GetPositionId(string position)
-        {
-            using (var cmd = new SqlCmdExt(_connectionString))
-            {
-                cmd.CreateCmd(@"
-                    SELECT
-                        Id
-                    FROM
-                        Position
-                    WHERE
-                        Position = @Position
-                ");
-                cmd.SetInArg("@Position", position);
-
-                cmd.ExecuteSelect();
-                if (!cmd.Read()) return -1;
-
-                return cmd.GetInt("Id");
-            }
-        }
-
-        private string GetHandedness(int handednessId)
-        {
-            using (var cmd = new SqlCmdExt(_connectionString))
-            {
-                cmd.CreateCmd(@"
-                    SELECT
-                        Hand
-                    FROM
-                        Handedness
-                    WHERE
-                        Id = @Id
-                    ");
-                cmd.SetInArg("@Id", handednessId);
-
-                cmd.ExecuteSelect();
-                if (!cmd.Read()) return null;
-
-                return cmd.GetString("Hand");
-            }
-        }
-
-        private int GetHandednessId(string handedness)
-        {
-            using (var cmd = new SqlCmdExt(_connectionString))
-            {
-                cmd.CreateCmd(@"
-                    SELECT
-                        Id
-                    FROM
-                        Handedness
-                    WHERE
-                        Hand = @Hand
-                ");
-                cmd.SetInArg("@Hand", handedness);
-
-                cmd.ExecuteSelect();
-                if (!cmd.Read()) return -1;
-
-                return cmd.GetInt("Id");
-            }
-        }
-
+        
         private int GetTeamId(DTeam team)
         {
             using (var cmd = new SqlCmdExt(_connectionString))
