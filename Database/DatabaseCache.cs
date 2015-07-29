@@ -12,6 +12,7 @@ namespace Database
         private Dictionary<int, string> _idToPosition;
         private Dictionary<string, int> _handednessToId;
         private Dictionary<string, int> _positionToId;
+        private object _locker = new object();
 
         private readonly string _connectionString;
 
@@ -22,42 +23,54 @@ namespace Database
 
         public string GetHandedness(int id)
         {
-            if (_idToHandedness == null)
+            lock (_locker)
             {
-                LoadHandednessPairs();
-            }
+                if (_idToHandedness == null)
+                {
+                    LoadHandednessPairs();
+                }
 
-            return _idToHandedness[id];
+                return _idToHandedness[id];
+            }
         }
 
         public int GetHandednessId(string hand)
         {
-            if (_handednessToId == null)
+            lock (_locker)
             {
-                LoadHandednessPairs();
-            }
+                if (_handednessToId == null)
+                {
+                    LoadHandednessPairs();
+                }
 
-            return _handednessToId[hand];
+                return _handednessToId[hand];
+            }
         }
 
         public string GetPosition(int id)
         {
-            if (_idToPosition == null)
+            lock (_locker)
             {
-                LoadPositionPairs();
-            }
+                if (_idToPosition == null)
+                {
+                    LoadPositionPairs();
+                }
 
-            return _idToPosition[id];
+                return _idToPosition[id];
+            }
         }
 
         public int GetPositionId(string position)
         {
-            if (_positionToId == null)
+            lock (_locker)
             {
-                LoadPositionPairs();
-            }
+                if (_positionToId == null)
+                {
+                    LoadPositionPairs();
+                }
 
-            return _positionToId[position];
+                return _positionToId[position];
+            }
         }
 
         /* *******************************************************
@@ -66,16 +79,16 @@ namespace Database
 
         private void LoadPositionPairs()
         {
-            _idToPosition = new Dictionary<int, string>();
-            _positionToId = new Dictionary<string, int>();
+            var idToPosition = new Dictionary<int, string>();
+            var positionToId = new Dictionary<string, int>();
 
             using (var cmd = new SqlCmdExt(_connectionString))
             {
                 cmd.CreateCmd(@"
-                    SELECT
-                        Id, Position
-                    FROM
-                        Position
+                SELECT
+                    Id, Position
+                FROM
+                    Position
                 ");
 
                 cmd.ExecuteSelect();
@@ -85,24 +98,27 @@ namespace Database
                     var id = cmd.GetInt("Id");
                     var position = cmd.GetString("Position");
 
-                    _idToPosition.Add(id, position);
-                    _positionToId.Add(position, id);
+                    idToPosition.Add(id, position);
+                    positionToId.Add(position, id);
                 }
             }
+
+            _idToPosition = idToPosition;
+            _positionToId = positionToId;
         }
 
         private void LoadHandednessPairs()
         {
-            _idToHandedness = new Dictionary<int, string>();
-            _handednessToId = new Dictionary<string, int>();
+            var idToHandedness = new Dictionary<int, string>();
+            var handednessToId = new Dictionary<string, int>();
 
             using (var cmd = new SqlCmdExt(_connectionString))
             {
                 cmd.CreateCmd(@"
-                    SELECT
-                        Id, Hand
-                    FROM
-                        Handedness
+                SELECT
+                    Id, Hand
+                FROM
+                    Handedness
                 ");
 
                 cmd.ExecuteSelect();
@@ -112,10 +128,13 @@ namespace Database
                     var id = cmd.GetInt("Id");
                     var hand = cmd.GetString("Hand");
 
-                    _idToHandedness.Add(id, hand);
-                    _handednessToId.Add(hand, id);
+                    idToHandedness.Add(id, hand);
+                    handednessToId.Add(hand, id);
                 }
             }
+
+            _idToHandedness = idToHandedness;
+            _handednessToId = handednessToId;
         }
     }
 }
