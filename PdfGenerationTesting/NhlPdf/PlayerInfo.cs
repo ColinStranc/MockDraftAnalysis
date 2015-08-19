@@ -1,4 +1,6 @@
-﻿namespace PdfGenerationTesting.NhlPdf
+﻿using iTextSharp.text;
+
+namespace PdfGenerationTesting.NhlPdf
 {
     public class PlayerInfo
     {

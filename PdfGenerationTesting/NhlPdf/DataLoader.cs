@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using iTextSharp.text;
 using log4net;
 using log4net.Config;
 
@@ -45,6 +46,9 @@ namespace PdfGenerationTesting.NhlPdf
         {
             var loadedTeam = new TeamInfo();
 
+            var uri = new Uri(_url);
+            loadedTeam.TeamPageUrl = uri.Host;
+            
             var rosterTable = _rosterPage.SelectSingleNode(
                 "//div[@class='tieUp']"
                 );
@@ -77,7 +81,7 @@ namespace PdfGenerationTesting.NhlPdf
                 }
 
                 Log.Info(row.ChildNodes.Count);
-                loadedTeam.Forwards.Add(CreatePlayerFromRosterRow(row));
+                loadedTeam.Forwards.Add(CreatePlayerFromRosterRow(loadedTeam, row));
             }
         }
 
@@ -96,7 +100,7 @@ namespace PdfGenerationTesting.NhlPdf
                 }
 
                 Log.Info(row.ChildNodes.Count);
-                loadedTeam.Defencemen.Add(CreatePlayerFromRosterRow(row));
+                loadedTeam.Defencemen.Add(CreatePlayerFromRosterRow(loadedTeam, row));
             }
         }
 
@@ -115,16 +119,21 @@ namespace PdfGenerationTesting.NhlPdf
                 }
 
                 Log.Info(row.ChildNodes.Count);
-                loadedTeam.Goalies.Add(CreatePlayerFromRosterRow(row));
+                loadedTeam.Goalies.Add(CreatePlayerFromRosterRow(loadedTeam, row));
             }
         }
 
-        private PlayerInfo CreatePlayerFromRosterRow(HtmlNode row)
+        private PlayerInfo CreatePlayerFromRosterRow(TeamInfo loadedTeam, HtmlNode row)
         {
             var rowElements = row.SelectNodes("td");
             var childNodeCount = rowElements.Count;
 
-            var pictureUrl = rowElements[1].SelectSingleNode("nobr/a").Attributes["href"].Value;
+            var relElement = rowElements[1].Attributes["rel"].Value;
+            var playerPhotoId = relElement.Split(':')[1];
+            var pictureUrl = "http://3.cdn.nhle.com/photos/mugs/" + playerPhotoId + ".jpg";
+            //var pictureUrl = "http://" + loadedTeam.TeamPageUrl + rowElements[1].SelectSingleNode("nobr/a").Attributes["href"].Value;
+            //var picture = GetPicture(pictureUrl);
+
             var jerseyNumber = rowElements[0].SelectSingleNode("span").InnerText;
             var name = rowElements[1].SelectSingleNode("nobr/a").InnerText;
             var position = childNodeCount == 8 ? rowElements[2].InnerText : null;

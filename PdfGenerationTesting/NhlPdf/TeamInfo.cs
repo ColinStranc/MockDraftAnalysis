@@ -8,7 +8,7 @@ namespace PdfGenerationTesting.NhlPdf
 {
     public class TeamInfo
     {
-        public string TeamPictureUrl { get; set; }
+        public string TeamPageUrl { get; set;}
 
         public List<PlayerInfo> Forwards { get; set; }
         public List<PlayerInfo> Defencemen { get; set; }

@@ -13,7 +13,7 @@ namespace PdfGenerationTesting
     public class PdfSample6 : APdfSampleBase
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof (PdfSample1));
-        private static readonly string[] urls = { "http://jets.nhl.com/club/roster.htm", "http://sharks.nhl.com/club/roster.htm" };
+        private static readonly string[] urls = { "http://jets.nhl.com/club/roster.htm", "http://sharks.nhl.com/club/roster.htm", "http://bluejackets.nhl.com/club/roster.htm" };
     
         protected override void PopulateDocument()
         {
