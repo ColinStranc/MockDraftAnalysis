@@ -1,12 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Web.Mvc;
+using AutoMapper;
 using Database;
 using DatabaseModels;
 using MockDraft.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace MockDraft.Web.Controllers
 {
@@ -25,7 +21,7 @@ namespace MockDraft.Web.Controllers
             var league = createLeagueModel.LeagueModel;
 
             var dLeague = Mapper.Map<DLeague>(league);
-            IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+            IDatabaseAccessor db = new SqlDatabaseAccessor(MvcApplication.GetMockDraftConnectionStringName());
 
             if (ModelState.IsValid)
             {

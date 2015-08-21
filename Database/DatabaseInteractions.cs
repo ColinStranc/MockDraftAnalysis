@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DatabaseModels;
 
 namespace Database
@@ -10,18 +7,18 @@ namespace Database
     public class DatabaseInteractions
     {
         private readonly string _connectionString;
-        private static Dictionary<string, DatabaseCache> _caches = new Dictionary<string, DatabaseCache>();
-        private DatabaseCache _cache;
+        private static readonly Dictionary<string, DatabaseCache> Caches = new Dictionary<string, DatabaseCache>();
+        private readonly DatabaseCache _cache;
 
         public DatabaseInteractions(string connectionString) 
         {
             _connectionString = connectionString;
             
-            if (!_caches.ContainsKey(connectionString))
+            if (!Caches.ContainsKey(connectionString))
             {
-                _caches.Add(connectionString, new DatabaseCache(connectionString));
+                Caches.Add(connectionString, new DatabaseCache(connectionString));
             }
-            _cache = _caches[_connectionString];
+            _cache = Caches[_connectionString];
         }
 
         /* *******************************************************
@@ -71,7 +68,7 @@ namespace Database
         public List<DLeague> GetAllLeagues()
         {
             var command = "SELECT * FROM League";
-            List<DLeague> leagues = new List<DLeague>();
+            var leagues = new List<DLeague>();
 
             using (var cmd = Select(command))
             {
@@ -334,7 +331,7 @@ namespace Database
 
         private DLeague InstantiateLeague(SqlCmdExt cmd)
         {
-            var league = new DLeague()
+            var league = new DLeague
             {
                 Id = cmd.GetInt("Id"),
                 Name = cmd.GetString("Name")
@@ -345,7 +342,7 @@ namespace Database
 
         private DTeam InstantiateTeam(SqlCmdExt cmd)
         {
-            var team = new DTeam()
+            var team = new DTeam
             {
                 Id = cmd.GetInt("Id"),
                 Name = cmd.GetString("Name"),
@@ -357,7 +354,7 @@ namespace Database
 
         private DProspect InstantiateProspect(SqlCmdExt cmd)
         {
-            var dProspect = new DProspect()
+            var dProspect = new DProspect
             {
                 Id = cmd.GetInt("Id"),
                 Name = cmd.GetString("Name"),

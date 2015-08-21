@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            @Html.ActionLink("Create Mock Draft", "Details", "MockDraft")
+        </div>
+        <div class="col-sm-3">
+            @Html.ActionLink("Browse Mock Drafts", "List", "MockDraft")
+        </div>
+        <div class="col-sm-3">
+            @Html.ActionLink("Enter Draft Results", "Details", "PastDraft")
+        </div>
+        <div class="col-sm-3">
+            @Html.ActionLink("Browse Past Drafts", "List", "PastDraft")
+        </div>
+    </div>
+</div>

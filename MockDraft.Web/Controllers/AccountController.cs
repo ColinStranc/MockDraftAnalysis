@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
 using MockDraft.Web.Models;
 
 namespace MockDraft.Web.Controllers
@@ -63,10 +57,7 @@ namespace MockDraft.Web.Controllers
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
+                ModelState.AddModelError("", "Invalid username or password.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -90,11 +81,11 @@ namespace MockDraft.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    await SignInAsync(user, false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -104,10 +95,7 @@ namespace MockDraft.Web.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    AddErrors(result);
-                }
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -129,11 +117,8 @@ namespace MockDraft.Web.Controllers
             {
                 return View("ConfirmEmail");
             }
-            else
-            {
-                AddErrors(result);
-                return View();
-            }
+            AddErrors(result);
+            return View();
         }
 
         //
@@ -212,11 +197,8 @@ namespace MockDraft.Web.Controllers
                 {
                     return RedirectToAction("ResetPasswordConfirmation", "Account");
                 }
-                else
-                {
-                    AddErrors(result);
-                    return View();
-                }
+                AddErrors(result);
+                return View();
             }
 
             // If we got this far, something failed, redisplay form
@@ -242,7 +224,7 @@ namespace MockDraft.Web.Controllers
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                await SignInAsync(user, isPersistent: false);
+                await SignInAsync(user, false);
                 message = ManageMessageId.RemoveLoginSuccess;
             }
             else
@@ -284,13 +266,10 @@ namespace MockDraft.Web.Controllers
                     if (result.Succeeded)
                     {
                         var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                        await SignInAsync(user, isPersistent: false);
+                        await SignInAsync(user, false);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    AddErrors(result);
                 }
             }
             else
@@ -309,10 +288,7 @@ namespace MockDraft.Web.Controllers
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                    AddErrors(result);
                 }
             }
 
@@ -346,16 +322,13 @@ namespace MockDraft.Web.Controllers
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
             {
-                await SignInAsync(user, isPersistent: false);
+                await SignInAsync(user, false);
                 return RedirectToLocal(returnUrl);
             }
-            else
-            {
-                // If the user does not have an account, then prompt the user to create an account
-                ViewBag.ReturnUrl = returnUrl;
-                ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-            }
+            // If the user does not have an account, then prompt the user to create an account
+            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+            return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
         }
 
         //
@@ -405,14 +378,14 @@ namespace MockDraft.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInAsync(user, isPersistent: false);
+                        await SignInAsync(user, false);
                         
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
@@ -453,7 +426,7 @@ namespace MockDraft.Web.Controllers
         {
             var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
-            return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
+            return PartialView("_RemoveAccountPartial", linkedAccounts);
         }
 
         protected override void Dispose(bool disposing)
@@ -481,7 +454,7 @@ namespace MockDraft.Web.Controllers
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
         }
 
         private void AddErrors(IdentityResult result)
@@ -521,10 +494,7 @@ namespace MockDraft.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         private class ChallengeResult : HttpUnauthorizedResult
@@ -546,7 +516,7 @@ namespace MockDraft.Web.Controllers
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = UserId;

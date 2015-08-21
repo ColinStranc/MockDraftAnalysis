@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DatabaseModels;
 using Utility;
 
@@ -14,7 +11,6 @@ namespace Database
         private DatabaseInteractions db;
 
         public SqlDatabaseAccessor(string connectionString)
-            : base()
         {
             ConnectionString = connectionString;
             db = new DatabaseInteractions(ConnectionString);
@@ -26,10 +22,10 @@ namespace Database
 
             if (count == -1)
             {
-                return ListUtility.QueueToList<DProspect>(prospects);
+                return ListUtility.QueueToList(prospects);
             }
 
-            List<DProspect> returnedProspects = ListUtility.GetFirstElements<DProspect>(prospects, count);
+            List<DProspect> returnedProspects = ListUtility.GetFirstElements(prospects, count);
             
             return returnedProspects;
         }
@@ -48,7 +44,7 @@ namespace Database
         {
             if (prospect.DraftYear == 0)
             {
-                prospect.DraftYear = Utility.Conversions.GetDraftYearFromBirthYear(prospect.BirthDay);
+                prospect.DraftYear = Conversions.GetDraftYearFromBirthYear(prospect.BirthDay);
             }
 
             db.AddProspect(prospect);

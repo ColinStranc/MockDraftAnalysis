@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
+﻿using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using DatabaseModels;
+using MockDraft.Web.Models;
 
 namespace MockDraft.Web
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -36,14 +34,20 @@ namespace MockDraft.Web
         private void AutoMapperInit()
         {
             // D(atabase) too W(eb)
-            Mapper.CreateMap<DatabaseModels.DLeague, MockDraft.Web.Models.WLeague>();
-            Mapper.CreateMap<DatabaseModels.DTeam, MockDraft.Web.Models.WTeam>();
-            Mapper.CreateMap<DatabaseModels.DProspect, MockDraft.Web.Models.WProspect>();
+            Mapper.CreateMap<DLeague, WLeague>();
+            Mapper.CreateMap<DTeam, WTeam>();
+            Mapper.CreateMap<DProspect, WProspect>();
+
+            Mapper.CreateMap<DDraft, WDraft>();
+            Mapper.CreateMap<DDraftPick, WDraftPick>();
 
             // W(eb) too D(atabase)
-            Mapper.CreateMap<MockDraft.Web.Models.WLeague, DatabaseModels.DLeague>();
-            Mapper.CreateMap<MockDraft.Web.Models.WTeam, DatabaseModels.DTeam>();
-            Mapper.CreateMap<MockDraft.Web.Models.WProspect, DatabaseModels.DProspect>();
+            Mapper.CreateMap<WLeague, DLeague>();
+            Mapper.CreateMap<WTeam, DTeam>();
+            Mapper.CreateMap<WProspect, DProspect>();
+
+            Mapper.CreateMap<WDraft, DDraft>();
+            Mapper.CreateMap<WDraftPick, DDraftPick>();
         }
     }
 }

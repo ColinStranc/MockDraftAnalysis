@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Text;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using log4net;
-using System.Configuration;
 
 namespace Database
 {
@@ -724,7 +724,7 @@ namespace Database
             sqlCommand.Parameters.AddWithValue(argName, value);
 
             if (argsText != null)
-                AddArgsText(argName, "'" + value.ToString() + "'");
+                AddArgsText(argName, "'" + value + "'");
         }
 
         /// <summary>
@@ -752,7 +752,7 @@ namespace Database
                 sqlCommand.Parameters.AddWithValue(argName, value.Value);
 
                 if (argsText != null)
-                    AddArgsText(argName, "'" + value.ToString() + "'");
+                    AddArgsText(argName, "'" + value + "'");
             }
         }
 
@@ -878,7 +878,7 @@ namespace Database
             sqlCommand.Parameters.AddWithValue(argName, value);
 
             if (argsText != null)
-                AddArgsText(argName, "'" + value.ToString() + "'");
+                AddArgsText(argName, "'" + value + "'");
         }
 
         /// <summary>
@@ -906,7 +906,7 @@ namespace Database
                 sqlCommand.Parameters.AddWithValue(argName, value.Value);
 
                 if (argsText != null)
-                    AddArgsText(argName, "'" + value.ToString() + "'");
+                    AddArgsText(argName, "'" + value + "'");
             }
         }
 
@@ -1830,7 +1830,7 @@ namespace Database
                     sqlReader.IsDBNull(i) ? "[NULL]"
                     : sqlReader.GetFieldType(i) == typeof(String) ? "'" + sqlReader.GetValue(i) + "'"
                     : sqlReader.GetValue(i).ToString();
-                string[] data = new[] { index, colName, sqlTypeName, dotNetTypeName, value };
+                string[] data = { index, colName, sqlTypeName, dotNetTypeName, value };
 
                 if (index.Length > maxIndex)
                     maxIndex = index.Length;

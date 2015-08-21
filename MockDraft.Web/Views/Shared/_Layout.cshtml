@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Full Prospect List", "ListHome", "Prospect")</li>
-                    <li>@Html.ActionLink("Mock Drafts", "Home", "MockDrafts")</li>
+                    <li>@Html.ActionLink("Mock Drafts", "Index", "MockDraft")</li>
                     <li>@Html.ActionLink("Create Prospect", "Create", "Prospect")</li>
                     <li>@Html.ActionLink("Create Team", "Create", "Team")</li>
                 </ul>
@@ -48,6 +48,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", false)
 </body>
 </html>

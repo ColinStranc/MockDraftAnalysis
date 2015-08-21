@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Database
 {
@@ -12,7 +8,7 @@ namespace Database
         private Dictionary<int, string> _idToPosition;
         private Dictionary<string, int> _handednessToId;
         private Dictionary<string, int> _positionToId;
-        private object _locker = new object();
+        private readonly object _locker = new object();
 
         private readonly string _connectionString;
 

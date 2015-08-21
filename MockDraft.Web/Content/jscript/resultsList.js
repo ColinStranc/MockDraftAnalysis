@@ -74,12 +74,3 @@ function hideProspects(count) {
     toggleButton.text("Show More");
     resultsTable.addClass("elementsHidden");
 }
-
-// I'm able to reference other js files before... why not this time?
-function inchesToFeetAndInches(inches) {
-    var feet = Math.floor(inches / 12);
-    inches = inches % 12;
-
-    var feetAndInches = "" + feet + "' " + inches + '"';
-    return feetAndInches;
-};

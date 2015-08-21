@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using MockDraft.Web.Models;
 using AutoMapper;
 using Database;
 using DatabaseModels;
+using MockDraft.Web.Models;
 
 namespace MockDraft.Web.Controllers
 {
@@ -19,9 +16,9 @@ namespace MockDraft.Web.Controllers
 
         public JsonResult List(int year, int count)
         {
-            IDatabaseAccessor dbAccess = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+            IDatabaseAccessor dbAccess = new SqlDatabaseAccessor(MvcApplication.GetMockDraftConnectionStringName());
 
-            List<DatabaseModels.DProspect> dProspects = dbAccess.GetTopProspects(year, count);
+            List<DProspect> dProspects = dbAccess.GetTopProspects(year, count);
 
             List<WProspect> prospects = new List<WProspect>();
 
@@ -30,7 +27,8 @@ namespace MockDraft.Web.Controllers
                 prospects.Add(Mapper.Map<WProspect>(dProspect));
             }
 
-            return new JsonResult() { 
+            return new JsonResult
+            { 
                 Data = prospects,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet 
             };
@@ -49,7 +47,7 @@ namespace MockDraft.Web.Controllers
             var prospectModel = createProspectModel.ProspectModel;
             prospectModel.Team = GetTeamWithId(createProspectModel.TeamId, createProspectModel.PossibleTeams);
             var dProspect = Mapper.Map<DProspect>(prospectModel);
-            IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+            IDatabaseAccessor db = new SqlDatabaseAccessor(MvcApplication.GetMockDraftConnectionStringName());
 
             if (ModelState.IsValid)
             {

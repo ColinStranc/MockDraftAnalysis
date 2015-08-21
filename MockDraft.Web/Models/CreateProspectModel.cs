@@ -1,16 +1,10 @@
-﻿using AutoMapper;
-using Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using AutoMapper;
 
 namespace MockDraft.Web.Models
 {
     public class CreateProspectModel : CreateModel
     {
-        //private I
-
         public List<WTeam> PossibleTeams;
 
         public WProspect ProspectModel { get; set; }
@@ -23,7 +17,7 @@ namespace MockDraft.Web.Models
         {
             ProspectModel = new WProspect();
 
-            var dTeams = db.GetAllTeams();
+            var dTeams = Db.GetAllTeams();
             PossibleTeams = new List<WTeam>();
             foreach (var dTeam in dTeams)
             {

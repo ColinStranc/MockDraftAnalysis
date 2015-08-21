@@ -1,7 +1,8 @@
 ﻿using Microsoft.Owin;
+using MockDraft.Web;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(MockDraft.Web.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 namespace MockDraft.Web
 {
     public partial class Startup

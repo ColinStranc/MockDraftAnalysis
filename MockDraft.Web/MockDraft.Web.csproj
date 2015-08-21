@@ -167,17 +167,21 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeagueController.cs" />
+    <Compile Include="Controllers\MockDraftController.cs" />
     <Compile Include="Controllers\ProspectController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CreateDraftModel.cs" />
     <Compile Include="Models\CreateLeagueModel.cs" />
     <Compile Include="Models\CreateModel.cs" />
     <Compile Include="Models\CreateProspectModel.cs" />
     <Compile Include="Models\CreateTeamModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\WDraft.cs" />
+    <Compile Include="Models\WDraftPick.cs" />
     <Compile Include="Models\WLeague.cs" />
     <Compile Include="Models\WProspect.cs" />
     <Compile Include="Models\WTeam.cs" />
@@ -190,6 +194,7 @@
     <Content Include="Content\jscript\common.js" />
     <Content Include="Content\jscript\HomeIndex.js" />
     <Content Include="Content\jscript\jquery-2.1.4.min.js" />
+    <Content Include="Content\jscript\ProspectCreate.js" />
     <Content Include="Content\jscript\ProspectListHome.js" />
     <Content Include="Content\jscript\resultsList.js" />
     <Content Include="Content\jscript\TeamCreate.js" />
@@ -243,6 +248,9 @@
     <Content Include="Views\League\Create.cshtml" />
     <Content Include="Views\Team\Create.cshtml" />
     <Content Include="Views\Prospect\Create.cshtml" />
+    <Content Include="Views\MockDraft\Index.cshtml" />
+    <Content Include="Views\MockDraft\Details.cshtml" />
+    <Content Include="Views\MockDraft\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

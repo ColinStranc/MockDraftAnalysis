@@ -17,7 +17,7 @@
         @Html.HiddenFor(model => model.ProspectModel.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.Name, "", new { @class = "text-danger" })
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TeamId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TeamId, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.DropDownListFor(model => model.TeamId, new SelectList(Model.PossibleTeams, "Id", "Name"))
                 @Html.ValidationMessageFor(model => model.TeamId, "", new { @class = "text-danger" })
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.Height, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.Height, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.Height, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.Height, "", new { @class = "text-danger" })
@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.Weight, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.Weight, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.Weight, "", new { @class = "text-danger" })
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.Position, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.Position, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.Position, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.Position, "", new { @class = "text-danger" })
@@ -60,7 +60,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.Handedness, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.Handedness, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.Handedness, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.Handedness, "", new { @class = "text-danger" })
@@ -68,7 +68,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.BirthDay, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.BirthDay, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.BirthDay, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.BirthDay, "", new { @class = "text-danger" })
@@ -76,7 +76,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.BirthCity, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.BirthCity, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.BirthCity, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.BirthCity, "", new { @class = "text-danger" })
@@ -84,7 +84,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.BirthCountry, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.BirthCountry, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.BirthCountry, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.BirthCountry, "", new { @class = "text-danger" })
@@ -92,7 +92,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProspectModel.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProspectModel.Notes, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProspectModel.Notes, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProspectModel.Notes, "", new { @class = "text-danger" })
@@ -110,3 +110,14 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script src="~/Content/jscript/jquery-2.1.4.min.js"></script>
+<script src="~/Content/jscript/common.js"></script>
+<script src="~/Content/jscript/ProspectCreate.js"></script>
+
+<script>
+    $(document).ready( function() {
+        commonReady();
+        customReady();
+    });
+</script>

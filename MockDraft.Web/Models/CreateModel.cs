@@ -1,8 +1,4 @@
 ﻿using Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MockDraft.Web.Models
 {
@@ -11,7 +7,7 @@ namespace MockDraft.Web.Models
         public abstract string ModelType { get; }
         public abstract string ModelName { get; }
 
-        protected IDatabaseAccessor db = new SqlDatabaseAccessor(MockDraft.Web.MvcApplication.GetMockDraftConnectionStringName());
+        protected IDatabaseAccessor Db = new SqlDatabaseAccessor(MvcApplication.GetMockDraftConnectionStringName());
 
         public string SuccessMessage 
         { 

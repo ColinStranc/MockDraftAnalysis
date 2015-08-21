@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using AutoMapper;
 
 namespace MockDraft.Web.Models
 {
@@ -23,7 +19,7 @@ namespace MockDraft.Web.Models
         {
             TeamModel = new WTeam();
 
-            var dLeagues = db.GetAllLeagues();
+            var dLeagues = Db.GetAllLeagues();
             PossibleLeagues = new List<WLeague>();
             foreach (var dLeague in dLeagues)
             {
