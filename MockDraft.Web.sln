@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockDraft.Web", "MockDraft.Web\MockDraft.Web.csproj", "{3CB57DF5-0A9C-44E1-B638-D1BC6CE72F63}"
 EndProject
@@ -13,8 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockDraft.Pdf", "MockDraft.Pdf\MockDraft.Pdf.csproj", "{76FD5EC6-38E0-400C-A6E3-0865CED84973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockDraft.Console", "MockDraft.Console\MockDraft.Console.csproj", "{44F110DE-8FED-4D68-93BE-2DDADA893B9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerationTesting", "PdfGenerationTesting\PdfGenerationTesting.csproj", "{314F70E6-B50F-485B-A83E-149BD56979FF}"
 EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +42,11 @@ Global
 		{76FD5EC6-38E0-400C-A6E3-0865CED84973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76FD5EC6-38E0-400C-A6E3-0865CED84973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76FD5EC6-38E0-400C-A6E3-0865CED84973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314F70E6-B50F-485B-A83E-149BD56979FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314F70E6-B50F-485B-A83E-149BD56979FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314F70E6-B50F-485B-A83E-149BD56979FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314F70E6-B50F-485B-A83E-149BD56979FF}.Release|Any CPU.Build.0 = Release|Any CPU
+
 		{44F110DE-8FED-4D68-93BE-2DDADA893B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44F110DE-8FED-4D68-93BE-2DDADA893B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44F110DE-8FED-4D68-93BE-2DDADA893B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
